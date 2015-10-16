@@ -20,6 +20,17 @@ CREATE TABLE houses (
   address VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE dogs (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE walkings (
+  id INTEGER PRIMARY KEY,
+  dog_id INTEGER NOT NULL,
+  human_id INTEGER NOT NULL
+);
+
 INSERT INTO
   houses (id, address)
 VALUES
@@ -41,3 +52,19 @@ VALUES
   (3, "Haskell", 3),
   (4, "Markov", 3),
   (5, "Stray Cat", NULL);
+
+INSERT INTO
+  dogs (id, name)
+VALUES
+  (1, "Rover"),
+  (2, "Fido"),
+  (3, "Rex"),
+  (4, "Phoebe");
+
+INSERT INTO
+  walkings (id, dog_id, human_id)
+VALUES
+  (1, 1, 1),
+  (2, 2, 1),
+  (3, 3, 1),
+  (4, 1, 2);

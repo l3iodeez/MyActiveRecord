@@ -1,0 +1,2 @@
+module Associatable
+end
