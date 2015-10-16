@@ -43,11 +43,12 @@ end
 module Associatable
   # Phase IIIb
   def belongs_to(name, options = {})
+      options_obj = BelongsToOptions.new(name, options)
+      
+      self.assoc_options[name] = options_obj
 
     define_method(name) do
-      options_obj = BelongsToOptions.new(name, options)
       parent_class = options_obj.model_class
-
       f_key = self.send(options_obj.foreign_key)
       parent = parent_class.where({:id => f_key })
       return nil if parent.count < 1
@@ -63,18 +64,18 @@ module Associatable
 
       p_key_value = self.send(options_obj.primary_key)
       f_key = options_obj.foreign_key
+
       options_obj.model_class.where({ f_key => p_key_value })
-    
+
 
     end
-
-
     # ...
   end
 
   def assoc_options
-    # Wait to implement this in Phase IVa. Modify `belongs_to`, too.
+    @assoc_options ||= {}
   end
+
 end
 
 class SQLObject
