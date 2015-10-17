@@ -39,8 +39,8 @@ describe 'Associatable' do
       expect(names).to eq(['Fido', 'Rex', 'Rover'])
     end
 
-    it "returns nil when human has no dogs" do
-      expect(lonely_human.dogs).to be_nil
+    it "returns an empty array when human has no dogs" do
+      expect(lonely_human.dogs).to eq([])
     end
   end
 end
